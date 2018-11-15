@@ -9,6 +9,8 @@ from pelican.server import ComplexHTTPRequestHandler
 
 # Local path configuration (can be absolute or relative to fabfile)
 env.deploy_path = 'output'
+# env.deploy_path = 'c\Users\Iwan.Thomas\Documents\Learning\staticsite\output'
+# env.deploy_path = '\output'
 DEPLOY_PATH = env.deploy_path
 
 # Remote server configuration
@@ -47,9 +49,10 @@ def regenerate():
 def serve():
     """Serve site at http://localhost:8000/"""
     os.chdir(env.deploy_path)
+    print (os.getcwd())
 
     class AddressReuseTCPServer(socketserver.TCPServer):
-            allow_reuse_address = True
+        allow_reuse_address = True
 
     server = AddressReuseTCPServer(('', PORT), ComplexHTTPRequestHandler)
 
